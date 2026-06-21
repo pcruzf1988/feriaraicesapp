@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Storage mirrors Firestore intent (doc §8.1 note 3): public read, owner + admin
+// write. Producers upload under their own uid; admins can write anywhere.
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signed()  { return request.auth != null; }
+    function isAdmin() { return signed() && request.auth.token.admin == true; }
+
+    // Product photos: /productos/{productorUid}/{file}
+    match /productos/{ownerUid}/{file=**} {
+      allow read: if true;
+      allow write: if isAdmin() || (signed() && request.auth.uid == ownerUid);
+    }
+
+    // Producer profile media (cover, etc.): /productores/{uid}/{file}
+    match /productores/{ownerUid}/{file=**} {
+      allow read: if true;
+      allow write: if isAdmin() || (signed() && request.auth.uid == ownerUid);
+    }
+
+    // Seal logos: admin-managed.
+    match /sellos/{file=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

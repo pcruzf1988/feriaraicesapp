@@ -1,0 +1,79 @@
+/* ============================================================================
+   Feria Raíces — Design tokens
+   Source of truth: Manual de Identidad Raíces 2025 (palette) + project mockups.
+   Every color here is an official hex from the manual (doc §7).
+   ========================================================================== */
+
+:root {
+  /* ---- Official palette (Manual de Identidad 2025) ---- */
+  --color-verde: #0e752d;        /* Primary / main action / "available"        */
+  --color-oliva: #697526;        /* Secondary green / earthy                    */
+  --color-terracota: #c94725;    /* Main accent / headings                      */
+  --color-rojo: #e3431c;         /* Alerts / "out of stock"                     */
+  --color-amarillo: #f9bd0b;     /* Highlights / market energy                  */
+  --color-mostaza: #c18a1d;      /* Seals / "low" availability                  */
+  --color-teal: #4e8279;         /* Info / "Nacional" closeness level           */
+  --color-azul: #2797c6;         /* Punctual accent (social / links)            */
+  --color-cacao: #4e3816;        /* Main text                                   */
+  --color-crema: #fbf1dc;        /* Screen background                           */
+
+  /* ---- Neutrals derived from the mockups ---- */
+  --color-bg: #ede6d6;           /* App canvas behind cards (mockup body bg)    */
+  --color-surface: #ffffff;      /* Cards / fields                              */
+  --color-surface-2: #fcf7ec;    /* Panels (admin)                             */
+  --color-muted: #8a7b5e;        /* Secondary text                              */
+  --color-text-soft: #5e5240;    /* Body copy                                   */
+  --color-line: rgba(78, 56, 22, 0.14);   /* Hairline borders                  */
+  --color-line-strong: rgba(78, 56, 22, 0.25);
+
+  /* ---- Semantic aliases (use these in components, not raw colors) ---- */
+  --primary: var(--color-verde);
+  --on-primary: #ffffff;
+  --accent: var(--color-terracota);
+  --danger: var(--color-rojo);
+
+  --avail-disponible: var(--color-verde);
+  --avail-poca: var(--color-mostaza);
+  --avail-sin-stock: var(--color-rojo);
+
+  /* ---- Typography ---- */
+  --font-display: "Amatic SC", cursive;     /* big / decorative only           */
+  --font-ui: "Quicksand", system-ui, sans-serif; /* all functional UI          */
+
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-base: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+  --fs-display: 32px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---- Spacing scale ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+
+  /* ---- Radii (from mockups: cards 16, chips/buttons 12, pills 999) ---- */
+  --radius-sm: 9px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --shadow-card: 0 2px 10px rgba(78, 56, 22, 0.06);
+  --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  /* ---- Layout ---- */
+  --bottom-nav-h: 64px;
+  --content-max: 480px;          /* mobile-first reading width                  */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}

@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*-debug.log
+
+# Service account / admin keys (NEVER commit these — unlike the web config,
+# the Admin SDK service-account JSON IS a secret; used by the seed script later)
+serviceAccount*.json
+*-service-account.json
+
+# Env
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local agent tooling metadata
+.atl/
+
+# Capacitor (added in bloque 7)
+/android
+/ios
+
+# Build output (none today — vanilla, no bundler)
+dist/

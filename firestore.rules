@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signed()  { return request.auth != null; }
+    function isAdmin() { return signed() && request.auth.token.admin == true; }
+    function noCambia(c){ return request.resource.data[c] == resource.data[c]; }
+
+    match /usuarios/{uid} {
+      allow read:   if isAdmin() || (signed() && request.auth.uid == uid);
+      allow create: if signed() && request.auth.uid == uid
+                    && request.resource.data.rol in ['consumidor','productor'];
+      allow update: if isAdmin() || (signed() && request.auth.uid == uid && noCambia('rol'));
+      allow delete: if isAdmin();
+    }
+
+    match /productores/{uid} {
+      allow read:   if resource.data.estado == 'aprobado' || isAdmin()
+                    || (signed() && request.auth.uid == uid);
+      allow create: if signed() && request.auth.uid == uid
+                    && request.resource.data.estado == 'pendiente'
+                    && request.resource.data.sellosVerificados.size() == 0;
+      allow update: if isAdmin()
+                    || (signed() && request.auth.uid == uid
+                        && noCambia('estado') && noCambia('plan')
+                        && noCambia('sellosVerificados'));
+      allow delete: if isAdmin();
+    }
+
+    match /productos/{id} {
+      allow read:   if true;
+      allow create: if signed() && request.resource.data.productorId == request.auth.uid;
+      allow update: if isAdmin()
+                    || (signed() && resource.data.productorId == request.auth.uid)
+                    || (signed()
+                        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['vistas'])
+                        && request.resource.data.vistas == resource.data.vistas + 1);
+      allow delete: if isAdmin()
+                    || (signed() && resource.data.productorId == request.auth.uid);
+    }
+
+    match /categorias/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /sellos/{id}     { allow read: if true; allow write: if isAdmin(); }
+    match /recetas/{id}    { allow read: if true; allow write: if isAdmin(); }
+
+    match /pedidos/{id} {
+      allow read:   if isAdmin() || (signed() && resource.data.consumidorId == request.auth.uid);
+      allow create: if signed() && request.resource.data.consumidorId == request.auth.uid;
+      allow update, delete: if signed() && resource.data.consumidorId == request.auth.uid;
+    }
+  }
+}

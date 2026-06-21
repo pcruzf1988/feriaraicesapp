@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feria Raíces — Panel de administración</title>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.5.0/tabler-icons.min.css">
+<style>
+  :root{--crema:#FBF1DC;--verde:#0E752D;--oliva:#697526;--terracota:#C94725;--rojo:#E3431C;
+    --amarillo:#F9BD0B;--mostaza:#C18A1D;--teal:#4E8279;--cacao:#4E3816;--muted:#8A7B5E;--line:rgba(78,56,22,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Quicksand',sans-serif;color:var(--cacao);background:#EDE6D6;padding:28px 16px;
+    display:flex;flex-direction:column;align-items:center;gap:14px}
+  .titulo{font-family:'Amatic SC',cursive;font-weight:700;font-size:36px;color:var(--verde);line-height:.8}
+  .win{width:960px;max-width:100%;background:#FCF7EC;border-radius:16px;overflow:hidden;
+    border:.5px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.16)}
+  .winbar{display:flex;align-items:center;gap:8px;background:#fff;padding:11px 16px;border-bottom:.5px solid var(--line)}
+  .winbar .d{width:11px;height:11px;border-radius:50%}
+  .url{flex:1;text-align:center;font-size:12px;color:var(--muted);font-weight:500}
+  .app{display:flex;min-height:560px}
+  .side{width:210px;background:#fff;border-right:.5px solid var(--line);padding:16px 12px;flex:0 0 auto}
+  .brand{display:flex;align-items:center;gap:8px;padding:4px 8px 14px}
+  .brand img{width:30px;height:30px;object-fit:contain}
+  .brand span{font-family:'Amatic SC',cursive;font-weight:700;font-size:24px;color:var(--verde);line-height:.7}
+  .nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;
+    font-weight:600;color:var(--cacao);text-decoration:none;margin-bottom:2px}
+  .nav a.on{background:#E4F0DC;color:var(--verde)}
+  .nav a .badge{margin-left:auto;background:var(--terracota);color:#fff;font-size:11px;font-weight:700;
+    border-radius:999px;padding:1px 7px}
+  .nav .ic{font-size:19px}
+  .main{flex:1;padding:20px 22px}
+  .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .ph h1{font-size:20px;font-weight:600}
+  .ph .who{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted)}
+  .ph .av{width:30px;height:30px;border-radius:50%;background:var(--oliva);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  .mc{background:#fff;border:.5px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mc .l{font-size:12px;color:var(--muted);font-weight:600}
+  .mc .n{font-size:26px;font-weight:700;margin-top:3px}
+  .grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+  .panel{background:#fff;border:.5px solid var(--line);border-radius:12px;padding:15px 16px;margin-bottom:14px}
+  .panel h2{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+  .sol{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:.5px solid var(--line)}
+  .sol:first-of-type{border-top:none}
+  .sol .av2{width:34px;height:34px;border-radius:50%;background:var(--mostaza);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 auto}
+  .sol .info{flex:1}
+  .sol .n{font-size:13px;font-weight:600}
+  .sol .l{font-size:11px;color:var(--muted);font-weight:500}
+  .btn{border:none;border-radius:9px;padding:7px 12px;font-size:12px;font-weight:600;font-family:'Quicksand';cursor:pointer}
+  .ok{background:var(--verde);color:#fff}
+  .no{background:#fff;border:.5px solid rgba(78,56,22,.25);color:var(--muted)}
+  .bar{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+  .bar .nm{font-size:13px;font-weight:600;width:120px;flex:0 0 auto}
+  .track{flex:1;height:9px;border-radius:6px;background:#F0E8D4;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .bar .v{font-size:12px;font-weight:700;color:var(--muted);width:38px;text-align:right}
+</style>
+</head>
+<body>
+
+<div class="titulo">Feria Raíces</div>
+
+<div class="win">
+  <div class="winbar"><span class="d" style="background:#E3431C"></span><span class="d" style="background:#F9BD0B"></span><span class="d" style="background:#0E752D"></span><span class="url">admin.feriaraices.app</span></div>
+  <div class="app">
+
+    <div class="side">
+      <div class="brand"><img src="logoFeriaRaices_oficial.png" alt=""><span>Feria Raíces</span></div>
+      <nav class="nav">
+        <a class="on" href="#"><i class="ti ti-layout-dashboard ic"></i> Panel</a>
+        <a href="#"><i class="ti ti-inbox ic"></i> Solicitudes <span class="badge">3</span></a>
+        <a href="#"><i class="ti ti-users ic"></i> Productores</a>
+        <a href="#"><i class="ti ti-basket ic"></i> Productos</a>
+        <a href="#"><i class="ti ti-certificate ic"></i> Sellos</a>
+        <a href="#"><i class="ti ti-tag ic"></i> Categorías</a>
+        <a href="#"><i class="ti ti-chef-hat ic"></i> Recetas</a>
+      </nav>
+    </div>
+
+    <div class="main">
+      <div class="ph">
+        <h1>Panel de administración</h1>
+        <div class="who"><span>Equipo Raíces</span><span class="av">ER</span></div>
+      </div>
+
+      <div class="cards">
+        <div class="mc"><div class="l">Productores activos</div><div class="n" style="color:var(--verde)">12</div></div>
+        <div class="mc"><div class="l">Pendientes</div><div class="n" style="color:var(--terracota)">3</div></div>
+        <div class="mc"><div class="l">Productos publicados</div><div class="n">48</div></div>
+        <div class="mc"><div class="l">Pedidos esta semana</div><div class="n" style="color:var(--teal)">27</div></div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="panel">
+            <h2><i class="ti ti-inbox" style="font-size:17px;color:var(--terracota)"></i> Solicitudes pendientes</h2>
+            <div class="sol"><span class="av2">QM</span><div class="info"><div class="n">Flia. Quispe Mamaní</div><div class="l">Yavi, Jujuy · 4 productos</div></div><button class="btn ok">Aprobar</button><button class="btn no">Rechazar</button></div>
+            <div class="sol"><span class="av2">CC</span><div class="info"><div class="n">Coop. Cumbres Andinas</div><div class="l">Tilcara, Jujuy · 8 productos</div></div><button class="btn ok">Aprobar</button><button class="btn no">Rechazar</button></div>
+            <div class="sol"><span class="av2">HV</span><div class="info"><div class="n">Huerta Valle Verde</div><div class="l">Humahuaca, Jujuy · 2 productos</div></div><button class="btn ok">Aprobar</button><button class="btn no">Rechazar</button></div>
+          </div>
+          <div class="panel">
+            <h2><i class="ti ti-eye" style="font-size:17px;color:var(--verde)"></i> Productos más vistos</h2>
+            <div class="bar"><span class="nm">Maíz criollo</span><span class="track"><span class="fill" style="width:100%;background:var(--verde)"></span></span><span class="v">320</span></div>
+            <div class="bar"><span class="nm">Quinoa orgánica</span><span class="track"><span class="fill" style="width:66%;background:var(--mostaza)"></span></span><span class="v">210</span></div>
+            <div class="bar"><span class="nm">Papa andina</span><span class="track"><span class="fill" style="width:56%;background:var(--terracota)"></span></span><span class="v">180</span></div>
+            <div class="bar"><span class="nm">Poroto pallar</span><span class="track"><span class="fill" style="width:44%;background:var(--teal)"></span></span><span class="v">142</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel">
+            <h2><i class="ti ti-map-pin" style="font-size:17px;color:var(--terracota)"></i> Origen de los consumidores</h2>
+            <div class="bar"><span class="nm">Buenos Aires</span><span class="track"><span class="fill" style="width:100%;background:var(--verde)"></span></span><span class="v">41%</span></div>
+            <div class="bar"><span class="nm">Rosario</span><span class="track"><span class="fill" style="width:60%;background:var(--verde)"></span></span><span class="v">24%</span></div>
+            <div class="bar"><span class="nm">Córdoba</span><span class="track"><span class="fill" style="width:38%;background:var(--verde)"></span></span><span class="v">15%</span></div>
+            <div class="bar"><span class="nm">San Salvador</span><span class="track"><span class="fill" style="width:30%;background:var(--verde)"></span></span><span class="v">12%</span></div>
+            <div class="bar"><span class="nm">Otras</span><span class="track"><span class="fill" style="width:20%;background:var(--muted)"></span></span><span class="v">8%</span></div>
+          </div>
+          <div class="panel">
+            <h2><i class="ti ti-shopping-bag" style="font-size:17px;color:var(--teal)"></i> Productos más pedidos</h2>
+            <div class="bar"><span class="nm">Maíz criollo</span><span class="track"><span class="fill" style="width:100%;background:var(--teal)"></span></span><span class="v">38</span></div>
+            <div class="bar"><span class="nm">Papa andina</span><span class="track"><span class="fill" style="width:71%;background:var(--teal)"></span></span><span class="v">27</span></div>
+            <div class="bar"><span class="nm">Quinoa orgánica</span><span class="track"><span class="fill" style="width:55%;background:var(--teal)"></span></span><span class="v">21</span></div>
+          </div>
+          <div class="panel">
+            <h2><i class="ti ti-chart-pie" style="font-size:17px;color:var(--mostaza)"></i> Demografía (autodeclarada)</h2>
+            <div class="bar"><span class="nm">26–40 años</span><span class="track"><span class="fill" style="width:80%;background:var(--mostaza)"></span></span><span class="v">45%</span></div>
+            <div class="bar"><span class="nm">41–60 años</span><span class="track"><span class="fill" style="width:55%;background:var(--mostaza)"></span></span><span class="v">31%</span></div>
+            <div class="bar"><span class="nm">18–25 años</span><span class="track"><span class="fill" style="width:25%;background:var(--mostaza)"></span></span><span class="v">14%</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

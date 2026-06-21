@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feria Raíces — Recetas</title>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.5.0/tabler-icons.min.css">
+<style>
+  :root{--crema:#FBF1DC;--verde:#0E752D;--oliva:#697526;--terracota:#C94725;--rojo:#E3431C;
+    --amarillo:#F9BD0B;--mostaza:#C18A1D;--teal:#4E8279;--cacao:#4E3816;--muted:#8A7B5E}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Quicksand',sans-serif;color:var(--cacao);background:#EDE6D6;padding:30px 16px;
+    display:flex;flex-direction:column;align-items:center;gap:16px}
+  .titulo{font-family:'Amatic SC',cursive;font-weight:700;font-size:38px;color:var(--verde);line-height:.8;text-align:center}
+  .row{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+  .col{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .cap{font-size:12px;color:var(--muted);font-weight:600}
+  .phone{width:330px;background:var(--crema);border-radius:30px;border:9px solid #2b2b2b;overflow:hidden;box-shadow:0 16px 44px rgba(0,0,0,.16)}
+  .ic{font-size:20px}
+  .top{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 6px}
+  .tbtn{width:34px;height:34px;border-radius:50%;background:#fff;border:.5px solid rgba(78,56,22,.18);display:flex;align-items:center;justify-content:center}
+  .pad{padding:0 16px}
+  .h-feria{font-family:'Amatic SC',cursive;font-weight:700;font-size:30px;color:var(--terracota);line-height:.9;padding:4px 16px 2px}
+  .h-sub{font-size:12px;color:var(--muted);font-weight:500;padding:0 16px 8px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:6px 16px 16px}
+  .rc{background:#fff;border:.5px solid rgba(78,56,22,.14);border-radius:16px;overflow:hidden}
+  .rc .img{height:84px;display:flex;align-items:center;justify-content:center}
+  .rc .img .ic{font-size:32px;color:rgba(255,255,255,.92)}
+  .rc .b{padding:8px 10px 11px}
+  .rc .t{font-size:14px;font-weight:600;line-height:1.15}
+  .rc .u{font-size:11px;color:var(--muted);font-weight:500;margin-top:3px}
+  /* ficha */
+  .hero{height:165px;display:flex;align-items:center;justify-content:center}
+  .hero .ic{font-size:60px;color:rgba(255,255,255,.92)}
+  .rt{font-size:22px;font-weight:600;padding:14px 16px 0;line-height:1.1}
+  .meta{display:flex;gap:14px;padding:8px 16px 0;color:var(--muted);font-size:12px;font-weight:600}
+  .meta span{display:flex;align-items:center;gap:5px}
+  .desc{font-size:13px;line-height:1.6;color:#5e5240;padding:10px 16px 0}
+  .lbl{font-size:13px;font-weight:600;padding:16px 16px 8px;display:flex;align-items:center;gap:6px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:.5px solid rgba(78,56,22,.18);
+    border-radius:12px;padding:8px 11px;font-size:12px;font-weight:600;color:var(--verde)}
+  .steps{padding:4px 16px 16px;counter-reset:s}
+  .stp{display:flex;gap:11px;margin-top:12px}
+  .num{width:24px;height:24px;border-radius:50%;background:var(--terracota);color:#fff;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .stp .tx{font-size:13px;line-height:1.5;color:#5e5240}
+</style>
+</head>
+<body>
+
+<div class="titulo">Feria Raíces</div>
+
+<div class="row">
+
+  <div class="col">
+   <div class="cap">Recetas · listado</div>
+   <div class="phone">
+    <div class="top"><div class="tbtn"><i class="ti ti-arrow-left ic"></i></div><div></div><div class="tbtn"><i class="ti ti-search ic" style="font-size:18px"></i></div></div>
+    <div class="h-feria">Recetas con identidad</div>
+    <div class="h-sub">Cociná con productos de la feria</div>
+    <div class="grid">
+      <div class="rc"><div class="img" style="background:var(--amarillo)"><i class="ti ti-soup ic"></i></div><div class="b"><div class="t">Humita en chala</div><div class="u">Usa: maíz, cebolla</div></div></div>
+      <div class="rc"><div class="img" style="background:var(--terracota)"><i class="ti ti-bowl ic"></i></div><div class="b"><div class="t">Locro norteño</div><div class="u">Usa: maíz, poroto, zapallo</div></div></div>
+      <div class="rc"><div class="img" style="background:var(--oliva)"><i class="ti ti-salad ic"></i></div><div class="b"><div class="t">Guiso de quinoa</div><div class="u">Usa: quinoa, verduras</div></div></div>
+      <div class="rc"><div class="img" style="background:var(--teal)"><i class="ti ti-cooker ic"></i></div><div class="b"><div class="t">Papas a la huancaína</div><div class="u">Usa: papa andina</div></div></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="col">
+   <div class="cap">Ficha de receta</div>
+   <div class="phone">
+    <div class="top" style="position:absolute"><div class="tbtn"><i class="ti ti-arrow-left ic"></i></div></div>
+    <div class="hero" style="background:var(--amarillo)"><i class="ti ti-soup ic"></i></div>
+    <div class="rt">Humita en chala</div>
+    <div class="meta"><span><i class="ti ti-clock" style="font-size:14px"></i> 60 min</span><span><i class="ti ti-flame" style="font-size:14px"></i> Media</span><span><i class="ti ti-users" style="font-size:14px"></i> 4 porciones</span></div>
+    <div class="desc">Un clásico del norte: el maíz criollo rallado y cocido en su propia chala. Simple, sabroso y bien de la tierra.</div>
+
+    <div class="lbl"><i class="ti ti-basket" style="font-size:17px;color:var(--verde)"></i> Productos que podés usar</div>
+    <div class="chips">
+      <span class="chip"><i class="ti ti-plant" style="font-size:14px"></i> Maíz criollo</span>
+      <span class="chip"><i class="ti ti-leaf" style="font-size:14px"></i> Cebolla</span>
+      <span class="chip"><i class="ti ti-pepper" style="font-size:14px"></i> Pimentón</span>
+    </div>
+
+    <div class="lbl"><i class="ti ti-chef-hat" style="font-size:17px;color:var(--terracota)"></i> Preparación</div>
+    <div class="steps">
+      <div class="stp"><div class="num">1</div><div class="tx">Rallá el maíz y reservá las chalas grandes, lavadas.</div></div>
+      <div class="stp"><div class="num">2</div><div class="tx">Rehogá la cebolla y el pimentón; sumá el maíz rallado.</div></div>
+      <div class="stp"><div class="num">3</div><div class="tx">Armá los paquetitos con la chala y atá las puntas.</div></div>
+      <div class="stp"><div class="num">4</div><div class="tx">Cociná en agua hirviendo unos 40 minutos. ¡Listo!</div></div>
+    </div>
+   </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feria Raíces — Alta del productor</title>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.5.0/tabler-icons.min.css">
+<style>
+  :root{--crema:#FBF1DC;--verde:#0E752D;--oliva:#697526;--terracota:#C94725;--rojo:#E3431C;
+    --amarillo:#F9BD0B;--mostaza:#C18A1D;--teal:#4E8279;--cacao:#4E3816;--muted:#8A7B5E}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Quicksand',sans-serif;color:var(--cacao);background:#EDE6D6;padding:30px 16px;
+    display:flex;flex-direction:column;align-items:center;gap:16px}
+  .titulo{font-family:'Amatic SC',cursive;font-weight:700;font-size:38px;color:var(--verde);line-height:.8;text-align:center}
+  .sub{font-size:13px;color:var(--muted);font-weight:600;text-align:center;margin-bottom:6px}
+  .row{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+  .col{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .cap{font-size:12px;color:var(--muted);font-weight:600}
+  .phone{width:300px;background:var(--crema);border-radius:30px;border:9px solid #2b2b2b;overflow:hidden;
+    box-shadow:0 16px 44px rgba(0,0,0,.16);display:flex;flex-direction:column;min-height:540px}
+  .top{display:flex;align-items:center;gap:10px;padding:16px 16px 4px}
+  .logo{width:30px;height:30px;object-fit:contain}
+  .brand{font-family:'Amatic SC',cursive;font-weight:700;font-size:24px;color:var(--verde);line-height:.7}
+  .prog{display:flex;gap:6px;padding:12px 16px 4px}
+  .prog span{height:5px;flex:1;border-radius:3px;background:rgba(78,56,22,.16)}
+  .prog .on{background:var(--verde)}
+  .step{font-size:12px;color:var(--muted);font-weight:600;padding:8px 16px 0}
+  .h{font-size:20px;font-weight:600;padding:2px 16px 0;line-height:1.15}
+  .body{padding:6px 16px;flex:1}
+  .flabel{font-size:12px;font-weight:600;margin:13px 0 5px}
+  .field{display:flex;align-items:center;justify-content:space-between;background:#fff;
+    border:.5px solid rgba(78,56,22,.25);border-radius:12px;padding:11px 12px;font-size:14px}
+  .field.ph{color:var(--muted)}
+  .upload{background:#fff;border:1.5px dashed rgba(78,56,22,.3);border-radius:14px;padding:22px;
+    text-align:center;color:var(--muted);font-size:13px;font-weight:600}
+  .upload .ic{font-size:26px;display:block;margin-bottom:6px;color:var(--mostaza)}
+  .area{min-height:64px;align-items:flex-start}
+  .chk{display:flex;align-items:center;gap:10px;background:#fff;border:.5px solid rgba(78,56,22,.2);
+    border-radius:12px;padding:11px 12px;margin-bottom:8px;font-size:14px;font-weight:600}
+  .box{width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(78,56,22,.35);flex:0 0 auto}
+  .box.on{background:var(--verde);border-color:var(--verde);display:flex;align-items:center;justify-content:center;color:#fff}
+  .hint{font-size:11px;color:var(--muted);font-weight:500;margin-top:4px}
+  .toggle{display:flex;align-items:center;justify-content:space-between;background:#fff;
+    border:.5px solid rgba(78,56,22,.2);border-radius:12px;padding:11px 12px;font-size:14px;font-weight:600}
+  .sw{width:38px;height:22px;border-radius:999px;background:var(--verde);position:relative;flex:0 0 auto}
+  .sw::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:2px;right:2px}
+  .foot{padding:10px 16px 16px}
+  .next{width:100%;background:var(--verde);color:#fff;border:none;border-radius:12px;padding:13px;
+    font-size:15px;font-weight:600;font-family:'Quicksand';cursor:pointer}
+  .later{display:block;width:100%;text-align:center;background:none;border:none;color:var(--muted);
+    font-size:13px;font-weight:600;margin-top:10px;font-family:'Quicksand';cursor:pointer}
+  .help{display:flex;align-items:center;justify-content:center;gap:6px;color:var(--verde);
+    font-size:12px;font-weight:600;padding:8px 0 0}
+  .ok-ic{width:70px;height:70px;border-radius:50%;background:#E4F0DC;color:var(--verde);
+    display:flex;align-items:center;justify-content:center;margin:30px auto 16px}
+  .center{text-align:center;padding:0 22px}
+  .center .t{font-size:21px;font-weight:600;margin-bottom:8px}
+  .center .d{font-size:13px;color:#5e5240;line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="titulo">Feria Raíces</div>
+<div class="sub">Alta del productor · asistente paso a paso</div>
+
+<div class="row">
+
+  <div class="col">
+   <div class="cap">Paso 1 · lo esencial</div>
+   <div class="phone">
+    <div class="top"><img class="logo" src="logoFeriaRaices_oficial.png" alt=""><span class="brand">Feria Raíces</span></div>
+    <div class="prog"><span class="on"></span><span></span><span></span></div>
+    <div class="step">Paso 1 de 3</div>
+    <div class="h">Empecemos por lo básico</div>
+    <div class="body">
+      <div class="flabel">Nombre del productor o familia</div>
+      <div class="field ph">Ej. Huerta La Quebrada</div>
+      <div class="flabel">Provincia</div>
+      <div class="field"><span>Jujuy</span><i class="ti ti-chevron-down" style="color:var(--muted)"></i></div>
+      <div class="flabel">Localidad</div>
+      <div class="field"><span>Maimará</span><i class="ti ti-chevron-down" style="color:var(--muted)"></i></div>
+      <div class="flabel">WhatsApp</div>
+      <div class="field ph">+54 9 388 …</div>
+    </div>
+    <div class="foot">
+      <button class="next">Siguiente</button>
+      <div class="help"><i class="ti ti-brand-whatsapp" style="font-size:15px"></i> Necesito ayuda</div>
+    </div>
+   </div>
+  </div>
+
+  <div class="col">
+   <div class="cap">Paso 2 · contame de vos</div>
+   <div class="phone">
+    <div class="top"><img class="logo" src="logoFeriaRaices_oficial.png" alt=""><span class="brand">Feria Raíces</span></div>
+    <div class="prog"><span class="on"></span><span class="on"></span><span></span></div>
+    <div class="step">Paso 2 de 3 · opcional</div>
+    <div class="h">Mostrá quién sos</div>
+    <div class="body">
+      <div class="flabel">Foto de portada</div>
+      <div class="upload"><i class="ti ti-camera-plus ic"></i>Subí una foto de tu huerta</div>
+      <div class="flabel">Contanos en pocas palabras</div>
+      <div class="field area ph">Quiénes son, qué producen, cómo lo hacen…</div>
+      <div class="hint">Podés completarlo después; no es obligatorio para publicar.</div>
+    </div>
+    <div class="foot">
+      <button class="next">Siguiente</button>
+      <button class="later">Lo hago más tarde</button>
+    </div>
+   </div>
+  </div>
+
+  <div class="col">
+   <div class="cap">Paso 3 · tus sellos</div>
+   <div class="phone">
+    <div class="top"><img class="logo" src="logoFeriaRaices_oficial.png" alt=""><span class="brand">Feria Raíces</span></div>
+    <div class="prog"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+    <div class="step">Paso 3 de 3 · opcional</div>
+    <div class="h">¿Tenés algún sello?</div>
+    <div class="body">
+      <div class="chk"><span class="box on"><i class="ti ti-check" style="font-size:13px"></i></span>Agroecológico SPG</div>
+      <div class="chk"><span class="box"></span>Producción familiar</div>
+      <div class="chk"><span class="box"></span>Sin agroquímicos</div>
+      <div class="hint">El equipo de Raíces verificará los sellos que marques.</div>
+      <div class="flabel">¿Integrás una cooperativa o grupo?</div>
+      <div class="toggle"><span>Sí, pertenezco</span><span class="sw"></span></div>
+      <div class="field ph" style="margin-top:8px">Coop. Cumbres Andinas</div>
+    </div>
+    <div class="foot">
+      <button class="next">Finalizar</button>
+    </div>
+   </div>
+  </div>
+
+  <div class="col">
+   <div class="cap">Listo · en revisión</div>
+   <div class="phone">
+    <div class="top"><img class="logo" src="logoFeriaRaices_oficial.png" alt=""><span class="brand">Feria Raíces</span></div>
+    <div class="body">
+      <div class="ok-ic"><i class="ti ti-check" style="font-size:34px"></i></div>
+      <div class="center">
+        <div class="t">¡Listo!</div>
+        <div class="d">Tu perfil quedó <b>en revisión</b>. Te avisamos cuando esté aprobado. Mientras tanto, ya podés ir cargando tus productos.</div>
+      </div>
+    </div>
+    <div class="foot">
+      <button class="next">Cargar mis productos</button>
+      <div class="help"><i class="ti ti-brand-whatsapp" style="font-size:15px"></i> Necesito ayuda</div>
+    </div>
+   </div>
+  </div>
+
+</div>
+</body>
+</html>

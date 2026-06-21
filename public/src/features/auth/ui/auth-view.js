@@ -38,6 +38,7 @@ export function authView({ navigate, query = {} } = {}) {
       await action();
       goAfterAuth();
     } catch (err) {
+      console.error("[auth] acción falló:", err?.code, err);
       state.error = friendlyError(err);
       state.busy = false;
       paint();

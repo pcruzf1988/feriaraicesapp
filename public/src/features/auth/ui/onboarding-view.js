@@ -24,6 +24,7 @@ export function onboardingView({ navigate } = {}) {
       await session.refresh();
       navigate("/feria");
     } catch (err) {
+      console.error("[onboarding] completeProfile/refresh falló:", err?.code, err);
       state.error = "No pudimos guardar tu elección. Probá de nuevo.";
       state.busy = false;
       paint();

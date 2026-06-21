@@ -7,9 +7,12 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "serve": "firebase emulators:start --only hosting --project feria-raices-app"
+    "serve": "firebase emulators:start --only hosting --project feria-raices-app",
+    "set-admin": "node scripts/set-admin.mjs",
+    "seed": "node scripts/seed.mjs"
   },
   "devDependencies": {
+    "firebase-admin": "^14.0.0",
     "vitest": "^3.0.0"
   }
 }

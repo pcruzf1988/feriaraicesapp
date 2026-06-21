@@ -24,6 +24,13 @@ export function cuentaView({ session, navigate } = {}) {
         h("span", { text: isAdmin ? "Administrador" : (ROLE_SHORT[rol] ?? "—") }),
       ]),
     ]),
+    isAdmin &&
+      h("button", {
+        class: "btn btn--accent btn--block",
+        type: "button",
+        style: "margin-top:16px;",
+        onclick: () => navigate("/admin"),
+      }, [icon("shield-cog"), "Ir al panel de administración"]),
     h("button", {
       class: "btn btn--ghost btn--block",
       type: "button",

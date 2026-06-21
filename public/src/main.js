@@ -10,6 +10,7 @@ import { decideNavigation } from "./features/auth/domain/navigation.js";
 import { authView } from "./features/auth/ui/auth-view.js";
 import { onboardingView } from "./features/auth/ui/onboarding-view.js";
 import { cuentaView } from "./features/auth/ui/cuenta-view.js";
+import { adminView } from "./features/admin/ui/admin-view.js";
 
 let router;
 const navigate = (path) => router.navigate(path);
@@ -41,6 +42,10 @@ const routes = {
     render: () => cuentaView({ session: session.get(), navigate }),
     meta: { requiresAuth: true },
   },
+  "/admin": {
+    render: () => adminView({ navigate }),
+    meta: { requiresAdmin: true },
+  },
   "*": () =>
     placeholderView({ title: "No encontramos esa página", subtitle: "Volvé a la feria desde el menú de abajo.", iconName: "mood-confuzed" }),
 };
@@ -49,7 +54,11 @@ router = createRouter({
   routes,
   outlet,
   guard: ({ meta }) => decideNavigation({ meta, session: session.get() }),
-  onNavigate: ({ path }) => setActive(path),
+  onNavigate: ({ path }) => {
+    setActive(path);
+    // The admin panel has its own layout — hide the consumer chrome.
+    document.body.classList.toggle("admin-mode", path.startsWith("/admin"));
+  },
   loadingNode: () =>
     placeholderView({ title: "Cargando…", subtitle: "Un segundo.", iconName: "loader-2" }),
 });

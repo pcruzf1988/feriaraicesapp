@@ -145,7 +145,7 @@ async function run() {
       redes: {},
       whatsapp: p.whatsapp,
       cooperativa: p.coop,
-      ubicacion: { provincia: p.provincia, localidad: p.localidad, lat: coord.lat, lng: coord.lng },
+      ubicacion: { pais: "Argentina", provincia: p.provincia, localidad: p.localidad, lat: coord.lat, lng: coord.lng },
       plan: "gratis",
       sellosDeclarados: p.sellos,
       sellosVerificados: p.sellos,

@@ -409,6 +409,173 @@ body.admin-mode .app-main {
   gap: var(--sp-2);
 }
 
+/* ---- Producer alta wizard ---- */
+.wizard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.wizard-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.wizard-progress {
+  display: flex;
+  gap: 6px;
+}
+.wizard-progress span {
+  height: 5px;
+  flex: 1;
+  border-radius: 3px;
+  background: var(--color-line);
+}
+.wizard-progress span.on {
+  background: var(--color-verde);
+}
+.wizard-step-label {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  font-weight: var(--fw-semibold);
+}
+.wizard h1 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-1);
+}
+.wizard-step-note {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  margin-bottom: var(--sp-2);
+}
+.wizard .admin-field {
+  margin-bottom: var(--sp-3);
+}
+.wizard-back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+.wizard-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-verde);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  padding: var(--sp-3) 0;
+}
+.wizard-done {
+  text-align: center;
+  padding-top: var(--sp-6);
+}
+.wizard-done__icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e4f0dc;
+  color: var(--color-verde);
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--sp-4);
+}
+.wizard-done h1 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--sp-2);
+}
+
+/* Seal picker (wizard step 3) */
+.sello-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+.sello-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-line-strong);
+  border-radius: var(--radius-md);
+  padding: 11px 12px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-cacao);
+}
+.sello-item.is-on {
+  border-color: var(--color-verde);
+  background: #e4f0dc;
+}
+.sello-check {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-line-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.sello-check.is-on {
+  background: var(--color-verde);
+  border-color: var(--color-verde);
+  color: #fff;
+}
+.wizard-coop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+.coop-toggle {
+  align-self: flex-start;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-muted);
+}
+.coop-toggle.is-on {
+  background: var(--color-verde);
+  border-color: var(--color-verde);
+  color: #fff;
+}
+
+/* ---- Producer home ---- */
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  margin-top: var(--sp-2);
+}
+.estado-badge--pendiente {
+  background: #fbeccb;
+  color: var(--color-mostaza);
+}
+.estado-badge--aprobado {
+  background: #e4f0dc;
+  color: var(--color-verde);
+}
+
 /* ---- Inputs ---- */
 .input {
   width: 100%;

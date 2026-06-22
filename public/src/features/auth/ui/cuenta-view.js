@@ -31,6 +31,13 @@ export function cuentaView({ session, navigate } = {}) {
         style: "margin-top:16px;",
         onclick: () => navigate("/admin"),
       }, [icon("shield-cog"), "Ir al panel de administración"]),
+    rol === "productor" &&
+      h("button", {
+        class: "btn btn--accent btn--block",
+        type: "button",
+        style: "margin-top:16px;",
+        onclick: () => navigate("/productor"),
+      }, [icon("plant-2"), "Ir a mi panel de productor"]),
     h("button", {
       class: "btn btn--ghost btn--block",
       type: "button",

@@ -22,7 +22,8 @@ export function onboardingView({ navigate } = {}) {
     try {
       await completeProfile({ rol: state.rol });
       await session.refresh();
-      navigate("/feria");
+      // A new producer goes straight to their alta wizard; buyers to the feria.
+      navigate(state.rol === "productor" ? "/productor" : "/feria");
     } catch (err) {
       console.error("[onboarding] completeProfile/refresh falló:", err?.code, err);
       state.error = "No pudimos guardar tu elección. Probá de nuevo.";

@@ -79,7 +79,7 @@ export function feriaView({ navigate } = {}) {
   }
 
   function paintRefRow() {
-    const label = state.ref ? `Cerca de ${state.ref.localidad}` : "Elegí tu localidad de referencia";
+    const label = state.ref ? `Recibís en ${state.ref.localidad}` : "Elegí dónde recibís tus productos";
     const rows = [
       h("button", { class: "ref-pill", type: "button", onclick: () => { state.pickingRef = !state.pickingRef; if (state.pickingRef && state.regions.length === 0) loadRegions(); paintRefRow(); } },
         [icon("map-pin"), h("span", { text: label }), icon("chevron-down")]),

@@ -1,7 +1,7 @@
 // Producer service — Firestore adapter for the productores/{uid} profile and the
 // sellos list shown during alta. Verified against the real project.
 
-import { db } from "../../core/firebase/firebase.js";
+import { db, storage } from "../../core/firebase/firebase.js";
 import {
   doc,
   getDoc,
@@ -11,6 +11,11 @@ import {
   getDocs,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-storage.js";
 
 import { buildProductorDoc } from "./domain/alta.js";
 
@@ -33,4 +38,12 @@ export function createProfile(uid, data) {
 // Producer self-updates (cannot touch estado/plan/sellosVerificados — rules block it).
 export function updateProfile(uid, patch) {
   return updateDoc(doc(db, "productores", uid), { ...patch, actualizado: serverTimestamp() });
+}
+
+// Uploads a cover image under productores/{uid}/ and returns its download URL.
+export async function uploadPortada(uid, file) {
+  const safe = file.name.replace(/[^\w.\-]/g, "_");
+  const r = ref(storage, `productores/${uid}/${Date.now()}_${safe}`);
+  await uploadBytes(r, file);
+  return getDownloadURL(r);
 }

@@ -31,6 +31,8 @@ function estadoView(profile, navigate) {
       : "Te avisamos cuando esté aprobado. Mientras tanto, ya podés ir cargando tus productos." }),
     h("button", { class: "btn btn--primary btn--block", style: "margin-top:20px;", onclick: () => navigate("/productor/productos") },
       [icon("basket"), "Mis productos"]),
+    h("button", { class: "btn btn--ghost btn--block", style: "margin-top:10px;", onclick: () => navigate("/productor/perfil") },
+      [icon("edit"), "Editar mi perfil"]),
     h("button", { class: "btn btn--ghost btn--block", style: "margin-top:10px;", onclick: () => navigate("/cuenta") },
       [icon("user"), "Mi cuenta"]),
   ]);

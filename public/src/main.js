@@ -16,6 +16,7 @@ import { cuentaView } from "./features/auth/ui/cuenta-view.js";
 import { adminView } from "./features/admin/ui/admin-view.js";
 import { productorHome } from "./features/productor/ui/productor-home.js";
 import { misProductosView } from "./features/productor/ui/mis-productos-view.js";
+import { miPerfilView } from "./features/productor/ui/mi-perfil-view.js";
 
 let router;
 const navigate = (path) => router.navigate(path);
@@ -55,6 +56,10 @@ const routes = {
   },
   "/productor/productos": {
     render: () => misProductosView({ navigate }),
+    meta: { requiresAuth: true, roles: ["productor"] },
+  },
+  "/productor/perfil": {
+    render: () => miPerfilView({ navigate }),
     meta: { requiresAuth: true, roles: ["productor"] },
   },
   "/perfil/:uid": ({ params }) => perfilView({ uid: params.uid, navigate }),

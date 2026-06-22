@@ -1304,3 +1304,27 @@ body.admin-mode .app-main {
   font-weight: var(--fw-semibold);
   font-size: var(--fs-sm);
 }
+
+/* ---- Editar mi perfil (4d) ---- */
+.perfil-cover--edit {
+  aspect-ratio: 16 / 9;
+  border: 1.5px dashed var(--color-line-strong);
+}
+.video-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+.video-row .input {
+  flex: 1;
+}
+.sello-verif {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-verde);
+  background: #e4f0dc;
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+}

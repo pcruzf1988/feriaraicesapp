@@ -4,6 +4,8 @@
 import { createRouter } from "./core/router/router.js";
 import { createAppShell } from "./ui/layout/app-shell.js";
 import { feriaView } from "./features/feria/feria-view.js";
+import { fichaView } from "./features/feria/ficha-view.js";
+import { perfilView } from "./features/feria/perfil-view.js";
 import { placeholderView } from "./ui/layout/placeholder-view.js";
 import { session } from "./features/auth/auth-store.js";
 import { decideNavigation } from "./features/auth/domain/navigation.js";
@@ -25,8 +27,7 @@ const routes = {
   "/feria": () => feriaView({ navigate }),
   "/recetas": () =>
     placeholderView({ title: "Recetas con identidad", subtitle: "Llegan en el bloque 5.", iconName: "chef-hat" }),
-  "/producto/:id": ({ params }) =>
-    placeholderView({ title: `Producto ${params.id}`, subtitle: "Ficha de producto: bloque 5.", iconName: "basket" }),
+  "/producto/:id": ({ params }) => fichaView({ id: params.id, navigate }),
   "/ingreso": {
     render: ({ query }) => authView({ navigate, query }),
     meta: {},
@@ -56,6 +57,7 @@ const routes = {
     render: () => misProductosView({ navigate }),
     meta: { requiresAuth: true, roles: ["productor"] },
   },
+  "/perfil/:uid": ({ params }) => perfilView({ uid: params.uid, navigate }),
   "*": () =>
     placeholderView({ title: "No encontramos esa página", subtitle: "Volvé a la feria desde el menú de abajo.", iconName: "mood-confuzed" }),
 };

@@ -4,7 +4,12 @@
 // In bloque 5d this is where "Mis pedidos" reads from, and sending moves a group
 // into Firestore `pedidos` (doc §8).
 
-import { addAlPedido } from "./domain/carrito.js";
+import {
+  addAlPedido,
+  cambiarCantidad as cambiarCantidadDom,
+  quitarItem as quitarItemDom,
+  quitarCarrito as quitarCarritoDom,
+} from "./domain/carrito.js";
 
 const KEY = "feria-carrito";
 const listeners = new Set();
@@ -25,6 +30,27 @@ function save(carts) {
 // Adds a product to the cart and persists it. Returns the new cart.
 export function agregarAlPedido(producto, cantidad = 1) {
   const next = addAlPedido(getCarrito(), producto, cantidad);
+  save(next);
+  return next;
+}
+
+// Edits a line's quantity (±delta), persists, and returns the new cart.
+export function cambiarCantidad(productorId, productoId, delta) {
+  const next = cambiarCantidadDom(getCarrito(), productorId, productoId, delta);
+  save(next);
+  return next;
+}
+
+// Removes a single line, persists, and returns the new cart.
+export function quitarItem(productorId, productoId) {
+  const next = quitarItemDom(getCarrito(), productorId, productoId);
+  save(next);
+  return next;
+}
+
+// Removes a whole producer group, persists, and returns the new cart.
+export function quitarCarrito(productorId) {
+  const next = quitarCarritoDom(getCarrito(), productorId);
   save(next);
   return next;
 }

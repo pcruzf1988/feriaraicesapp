@@ -6,6 +6,7 @@ import { createAppShell } from "./ui/layout/app-shell.js";
 import { feriaView } from "./features/feria/feria-view.js";
 import { fichaView } from "./features/feria/ficha-view.js";
 import { perfilView } from "./features/feria/perfil-view.js";
+import { misPedidosView } from "./features/feria/mis-pedidos-view.js";
 import { placeholderView } from "./ui/layout/placeholder-view.js";
 import { session } from "./features/auth/auth-store.js";
 import { decideNavigation } from "./features/auth/domain/navigation.js";
@@ -37,8 +38,7 @@ const routes = {
     meta: { onboarding: true },
   },
   "/pedidos": {
-    render: () =>
-      placeholderView({ title: "Mis pedidos", subtitle: "Tus carritos por productor vivirán acá (bloque 5).", iconName: "basket" }),
+    render: () => misPedidosView({ navigate }),
     meta: { requiresAuth: true, roles: ["consumidor"] },
   },
   "/cuenta": {

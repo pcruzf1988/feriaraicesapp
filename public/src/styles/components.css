@@ -1100,3 +1100,121 @@ body.admin-mode .app-main {
   color: #ff0000;
   font-size: 20px;
 }
+
+/* ---- Mis pedidos (carrito por productor) ---- */
+.pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.pedidos-empty {
+  text-align: center;
+  padding-top: var(--sp-8);
+}
+.pedidos-empty h1 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-2);
+}
+
+.pedido-card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.pedido-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.pedido-prod-name {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-cacao);
+}
+
+.pedido-items {
+  display: flex;
+  flex-direction: column;
+}
+.pedido-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: var(--sp-2) 0;
+  border-top: 0.5px solid var(--color-line);
+}
+.pedido-item:first-child {
+  border-top: none;
+}
+.pedido-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.pedido-item__name {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-cacao);
+}
+.pedido-item__price {
+  font-size: var(--fs-xs);
+  color: var(--color-muted);
+  font-weight: var(--fw-medium);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: 0 0 auto;
+}
+.stepper__btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 0.5px solid var(--color-line-strong);
+  background: var(--color-surface);
+  color: var(--color-verde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.stepper__count {
+  min-width: 20px;
+  text-align: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  color: var(--color-cacao);
+}
+
+.pedido-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-top: 0.5px solid var(--color-line);
+  padding-top: var(--sp-3);
+}
+.pedido-total-label {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  font-weight: var(--fw-semibold);
+}
+.pedido-total {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-cacao);
+}

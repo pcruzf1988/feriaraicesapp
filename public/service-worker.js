@@ -10,7 +10,7 @@
 //
 // Bump CACHE_VERSION whenever the shell asset list changes to invalidate old caches.
 
-const CACHE_VERSION = "feria-raices-v7";
+const CACHE_VERSION = "feria-raices-v8";
 const SHELL_ASSETS = [
   "/",
   "/index.html",

@@ -1,11 +1,15 @@
 import { h, icon } from "../../../core/utils/dom.js";
 import { createCrudSection } from "./crud-section.js";
+import { createSolicitudesSection } from "./solicitudes-section.js";
+import { createProductoresSection } from "./productores-section.js";
+import { createDashboardSection } from "./dashboard-section.js";
 import { validateCategoria, validateSello, validateReceta } from "../domain/validate.js";
 import { logout } from "../../auth/auth-service.js";
-import { session } from "../../auth/auth-store.js";
 
 const TABS = [
   { key: "panel", label: "Inicio", iconName: "layout-dashboard" },
+  { key: "solicitudes", label: "Solicitudes", iconName: "user-plus" },
+  { key: "productores", label: "Productores", iconName: "plant-2" },
   { key: "categorias", label: "Categorías", iconName: "tag" },
   { key: "sellos", label: "Sellos", iconName: "certificate" },
   { key: "recetas", label: "Recetas", iconName: "chef-hat" },
@@ -13,6 +17,10 @@ const TABS = [
 
 function sectionFor(key) {
   switch (key) {
+    case "solicitudes":
+      return createSolicitudesSection();
+    case "productores":
+      return createProductoresSection();
     case "categorias":
       return createCrudSection({
         title: "Categorías",
@@ -52,23 +60,14 @@ function sectionFor(key) {
         ],
       });
     default:
-      return panelOverview();
+      return createDashboardSection();
   }
-}
-
-function panelOverview() {
-  const s = session.get();
-  return h("section", { class: "admin-section" }, [
-    h("h2", { text: "Panel de administración" }),
-    h("p", { class: "admin-muted", text: `Hola, ${s?.profile?.nombre ?? "equipo Raíces"}. Desde acá gestionás los datos maestros de la feria.` }),
-    h("p", { class: "admin-muted", text: "Aprobación de productores y estadísticas llegan en el bloque 6." }),
-  ]);
 }
 
 // Admin panel (block 3c). Master-data CRUD: categorías, sellos, recetas.
 // Guarded by requiresAdmin (the custom claim), with its own layout (no bottom nav).
 export function adminView({ navigate } = {}) {
-  const state = { active: "categorias" };
+  const state = { active: "panel" };
   const root = h("div", { class: "admin" });
 
   async function onLogout() {

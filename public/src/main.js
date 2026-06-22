@@ -12,6 +12,7 @@ import { onboardingView } from "./features/auth/ui/onboarding-view.js";
 import { cuentaView } from "./features/auth/ui/cuenta-view.js";
 import { adminView } from "./features/admin/ui/admin-view.js";
 import { productorHome } from "./features/productor/ui/productor-home.js";
+import { misProductosView } from "./features/productor/ui/mis-productos-view.js";
 
 let router;
 const navigate = (path) => router.navigate(path);
@@ -52,8 +53,7 @@ const routes = {
     meta: { requiresAuth: true, roles: ["productor"] },
   },
   "/productor/productos": {
-    render: () =>
-      placeholderView({ title: "Mis productos", subtitle: "El CRUD de productos con fotos llega en el próximo paso (4c).", iconName: "basket" }),
+    render: () => misProductosView({ navigate }),
     meta: { requiresAuth: true, roles: ["productor"] },
   },
   "*": () =>

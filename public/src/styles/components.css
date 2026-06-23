@@ -82,38 +82,65 @@
   display: flex;
   gap: var(--sp-2);
   overflow-x: auto;
-  padding-bottom: 9px; /* room for the scroll-hint line below the chips */
   -webkit-overflow-scrolling: touch;
-  /* Thin styled scrollbar = a visible "line below" that signals sideways scroll */
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-verde) rgba(78, 56, 22, 0.1);
+  scrollbar-width: none; /* native scrollbar hidden — we draw our own indicator */
 }
-
 .chip-row::-webkit-scrollbar {
-  height: 5px;
-}
-.chip-row::-webkit-scrollbar-track {
-  background: rgba(78, 56, 22, 0.08);
-  border-radius: var(--radius-pill);
-}
-.chip-row::-webkit-scrollbar-thumb {
-  background: var(--color-verde);
-  border-radius: var(--radius-pill);
+  display: none;
 }
 
-/* Right-edge fade hinting there are more options off-screen to the side */
+/* Always-visible scroll affordance: edge fades + a progress bar (see feria-view) */
 .chip-scroller {
   position: relative;
 }
+.chip-scroller::before,
 .chip-scroller::after {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 9px;
-  width: 32px;
+  bottom: 13px; /* sit above the progress bar */
+  width: 34px;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+.chip-scroller::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+.chip-scroller::after {
+  right: 0;
   background: linear-gradient(to left, var(--color-bg), transparent);
+}
+.chip-scroller.can-left::before {
+  opacity: 1;
+}
+.chip-scroller.can-right::after {
+  opacity: 1;
+}
+
+.chip-progress {
+  position: relative;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(78, 56, 22, 0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.chip-scroller.is-scrollable .chip-progress {
+  opacity: 1;
+}
+.chip-progress__thumb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  min-width: 28px;
+  width: 30%;
+  border-radius: var(--radius-pill);
+  background: var(--color-verde);
 }
 
 /* ---- Availability badge (doc §5.4) ---- */

@@ -76,6 +76,24 @@ export function feriaView({ navigate } = {}) {
       chip("Todas", ""),
       ...state.categorias.map((c) => chip(c.nombre, c.id))
     );
+    updateScrollHint();
+  }
+
+  // Custom, always-visible scroll affordance: a progress bar whose green segment
+  // tracks the scroll position, plus edge fades that reveal there's more to the
+  // side. Native scrollbars hide on touch, so we draw our own.
+  function updateScrollHint() {
+    const el = els.chips;
+    if (!el) return;
+    const { scrollWidth, clientWidth, scrollLeft } = el;
+    const max = scrollWidth - clientWidth;
+    const scrollable = max > 1;
+    els.scroller.classList.toggle("is-scrollable", scrollable);
+    els.scroller.classList.toggle("can-left", scrollLeft > 2);
+    els.scroller.classList.toggle("can-right", scrollLeft < max - 2);
+    const ratio = scrollWidth > 0 ? clientWidth / scrollWidth : 1;
+    els.progressThumb.style.width = `${Math.min(100, ratio * 100)}%`;
+    els.progressThumb.style.left = scrollWidth > 0 ? `${(scrollLeft / scrollWidth) * 100}%` : "0%";
   }
 
   function paintRefRow() {
@@ -123,6 +141,12 @@ export function feriaView({ navigate } = {}) {
 
   els.refRow = h("div", { class: "ref-row" });
   els.chips = h("div", { class: "chip-row" });
+  els.progressThumb = h("span", { class: "chip-progress__thumb" });
+  els.scroller = h("div", { class: "chip-scroller" }, [
+    els.chips,
+    h("div", { class: "chip-progress" }, [els.progressThumb]),
+  ]);
+  els.chips.addEventListener("scroll", updateScrollHint);
   els.grid = h("div", {});
   const search = h("input", {
     class: "input feria-search",
@@ -136,7 +160,7 @@ export function feriaView({ navigate } = {}) {
     h("p", { class: "section-subtitle", text: "Productos agroecológicos, directo del productor" }),
     els.refRow,
     h("div", { style: "margin:12px 0;" }, [search]),
-    h("div", { class: "chip-scroller" }, [els.chips]),
+    els.scroller,
     h("div", { style: "margin-top:12px;" }, [els.grid])
   );
 

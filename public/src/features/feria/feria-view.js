@@ -136,7 +136,7 @@ export function feriaView({ navigate } = {}) {
     h("p", { class: "section-subtitle", text: "Productos agroecológicos, directo del productor" }),
     els.refRow,
     h("div", { style: "margin:12px 0;" }, [search]),
-    els.chips,
+    h("div", { class: "chip-scroller" }, [els.chips]),
     h("div", { style: "margin-top:12px;" }, [els.grid])
   );
 

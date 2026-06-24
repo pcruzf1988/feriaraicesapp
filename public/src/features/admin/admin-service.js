@@ -2,7 +2,7 @@
 // recetas. Writes are admin-only (enforced by security rules via the custom
 // claim). Verified against the real project, not unit-tested.
 
-import { db } from "../../core/firebase/firebase.js";
+import { db, storage } from "../../core/firebase/firebase.js";
 import {
   collection,
   getDocs,
@@ -16,6 +16,11 @@ import {
   writeBatch,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-storage.js";
 
 export async function listAll(coll, orderField) {
   const c = collection(db, coll);
@@ -61,4 +66,13 @@ export async function setProductorEstado(uid, estado) {
 // the admin can write this field).
 export function setSellosVerificados(uid, sellosVerificados) {
   return updateDoc(doc(db, "productores", uid), { sellosVerificados, actualizado: serverTimestamp() });
+}
+
+// Upload a recipe cover to Storage (/recetas/...) and return its public URL.
+// Mirrors uploadPortada in productor-service.
+export async function uploadRecetaImagen(file) {
+  const safe = file.name.replace(/[^\w.\-]/g, "_");
+  const r = ref(storage, `recetas/${Date.now()}_${safe}`);
+  await uploadBytes(r, file);
+  return getDownloadURL(r);
 }

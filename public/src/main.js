@@ -8,6 +8,7 @@ import { fichaView } from "./features/feria/ficha-view.js";
 import { perfilView } from "./features/feria/perfil-view.js";
 import { misPedidosView } from "./features/feria/mis-pedidos-view.js";
 import { recetasView } from "./features/feria/recetas-view.js";
+import { recetaView } from "./features/feria/receta-view.js";
 import { placeholderView } from "./ui/layout/placeholder-view.js";
 import { session } from "./features/auth/auth-store.js";
 import { decideNavigation } from "./features/auth/domain/navigation.js";
@@ -29,6 +30,7 @@ const routes = {
   "/": () => feriaView({ navigate }),
   "/feria": () => feriaView({ navigate }),
   "/recetas": () => recetasView({ navigate }),
+  "/receta/:id": ({ params }) => recetaView({ id: params.id, navigate }),
   "/producto/:id": ({ params }) => fichaView({ id: params.id, navigate }),
   "/ingreso": {
     render: ({ query }) => authView({ navigate, query }),

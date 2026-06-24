@@ -15,13 +15,21 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Lock the document so the body never scrolls. On iOS WebKit a scrolling body
+   makes position:fixed elements (the bottom nav) drift during the dynamic-toolbar
+   resize and elastic overscroll. Scrolling lives inside .app-main instead. */
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: var(--font-ui);
   font-weight: var(--fw-medium);
   color: var(--color-cacao);
   background: var(--color-bg);
   line-height: 1.4;
-  min-height: 100dvh;
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -51,7 +59,8 @@ h3 {
 #app {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  height: 100dvh;
+  min-height: 0;
 }
 
 .app-header {
@@ -60,8 +69,7 @@ h3 {
   gap: var(--sp-2);
   padding: var(--sp-4) var(--sp-4) var(--sp-2);
   background: var(--color-crema);
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 10;
 }
 
@@ -87,12 +95,15 @@ h3 {
 
 .app-main {
   flex: 1;
+  min-height: 0;
   width: 100%;
   max-width: var(--content-max);
   margin-inline: auto;
   padding: var(--sp-4);
-  /* leave room for the fixed bottom nav */
-  padding-bottom: calc(var(--bottom-nav-h) + var(--safe-bottom) + var(--sp-4));
+  /* the only scroll container — keeps the body locked on iOS */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 /* Decorative big headings ("feria" moments) use Amatic SC. */

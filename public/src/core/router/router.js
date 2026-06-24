@@ -72,7 +72,8 @@ export function createRouter({ routes, outlet, guard, onNavigate, loadingNode })
 
     const node = await view(ctx);
     outlet.replaceChildren(node);
-    window.scrollTo(0, 0);
+    // .app-main is the scroll container now (body is locked), so reset it.
+    outlet.scrollTop = 0;
     onNavigate?.(ctx);
   }
 

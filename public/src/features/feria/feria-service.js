@@ -65,6 +65,18 @@ export async function listSellos() {
   return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 }
 
+// --- Recetas públicas (doc §4.5). Lectura pública por reglas. ---
+
+export async function listRecetas() {
+  const snap = await getDocs(collection(db, "recetas"));
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+
+export async function getReceta(id) {
+  const snap = await getDoc(doc(db, "recetas", id));
+  return snap.exists() ? { id: snap.id, ...snap.data() } : null;
+}
+
 // Best-effort view counter (doc §10 "productos más vistos"). The security rules
 // only allow the +1 increment for signed-in users, so this silently no-ops for
 // anonymous visitors.

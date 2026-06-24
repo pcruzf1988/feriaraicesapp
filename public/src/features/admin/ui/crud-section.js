@@ -27,7 +27,7 @@ function docToField(field, value) {
 
 export function createCrudSection(config) {
   const { title, coll, orderField, validate, itemTitle, itemSubtitle, fields } = config;
-  const state = { items: [], loading: true, editingId: null, form: {}, errors: {}, busy: false };
+  const state = { items: [], loading: true, editingId: null, form: {}, errors: {}, busy: false, uploadingField: null };
   const root = h("section", { class: "admin-section" });
 
   async function reload() {
@@ -55,10 +55,40 @@ export function createCrudSection(config) {
   function readForm() {
     const data = {};
     for (const f of fields) {
+      if (f.type === "image") {
+        data[f.name] = (state.form[f.name] || "").trim();
+        continue;
+      }
       const raw = root.querySelector(`[name="${f.name}"]`)?.value ?? "";
       data[f.name] = fieldToDoc(f, raw);
     }
     return data;
+  }
+
+  // Keeps typed (uncontrolled) values across a repaint — e.g. while an image
+  // uploads — so the form doesn't lose what the admin already wrote.
+  function syncFormFromDom() {
+    for (const f of fields) {
+      if (f.type === "image") continue; // value lives in state.form, not in a file input
+      const el = root.querySelector(`[name="${f.name}"]`);
+      if (el) state.form[f.name] = el.value;
+    }
+  }
+
+  async function onPickImage(field, file) {
+    if (!file || !field.upload) return;
+    syncFormFromDom();
+    state.uploadingField = field.name;
+    delete state.errors[field.name];
+    paint();
+    try {
+      state.form[field.name] = await field.upload(file);
+    } catch (err) {
+      console.error(`[admin/${coll}] subir imagen falló:`, err?.code, err);
+      state.errors[field.name] = "No se pudo subir la imagen.";
+    }
+    state.uploadingField = null;
+    paint();
   }
 
   async function save(e) {
@@ -99,6 +129,25 @@ export function createCrudSection(config) {
   }
 
   function renderField(f) {
+    if (f.type === "image") {
+      const url = state.form[f.name];
+      return h("div", { class: "admin-field" }, [
+        h("label", { class: "admin-field__label", text: f.label }),
+        h("div", { class: "admin-image-field" }, [
+          h("div", { class: "admin-image-preview" }, [
+            url ? h("img", { src: url, alt: f.label }) : icon("photo"),
+          ]),
+          h("label", { class: "btn btn--ghost btn--sm" }, [
+            state.uploadingField === f.name ? "Subiendo…" : (url ? "Cambiar imagen" : "Subir imagen"),
+            h("input", {
+              type: "file", accept: "image/*", hidden: "true",
+              onchange: (e) => onPickImage(f, e.target.files?.[0]),
+            }),
+          ]),
+        ]),
+        state.errors[f.name] && h("div", { class: "admin-field__error", text: state.errors[f.name] }),
+      ]);
+    }
     const common = { class: "input", name: f.name, placeholder: f.placeholder ?? "", value: state.form[f.name] ?? "" };
     const input =
       f.type === "textarea" || f.type === "lines"

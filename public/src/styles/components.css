@@ -1378,3 +1378,23 @@ body.admin-mode .app-main {
   border-radius: var(--radius-pill);
   padding: 2px 8px;
 }
+
+/* ---- Admin: image upload field ---- */
+.admin-image-field {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.admin-image-preview {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-crema);
+  color: var(--color-oliva);
+}
+.admin-image-preview img { width: 100%; height: 100%; object-fit: cover; }

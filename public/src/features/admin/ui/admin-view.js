@@ -4,6 +4,7 @@ import { createSolicitudesSection } from "./solicitudes-section.js";
 import { createProductoresSection } from "./productores-section.js";
 import { createDashboardSection } from "./dashboard-section.js";
 import { validateCategoria, validateSello, validateReceta } from "../domain/validate.js";
+import { uploadRecetaImagen } from "../admin-service.js";
 import { logout } from "../../auth/auth-service.js";
 
 const TABS = [
@@ -56,6 +57,8 @@ function sectionFor(key) {
         fields: [
           { name: "titulo", label: "Título", type: "text", placeholder: "Ej. Humita en chala" },
           { name: "descripcion", label: "Descripción", type: "textarea", placeholder: "De qué trata la receta" },
+          { name: "portadaURL", label: "Portada (opcional)", type: "image", upload: uploadRecetaImagen },
+          { name: "video", label: "Video de YouTube (opcional)", type: "text", placeholder: "https://youtu.be/…" },
           { name: "instrucciones", label: "Pasos (uno por línea)", type: "lines", placeholder: "Rallá el maíz…\nRehogá la cebolla…" },
         ],
       });

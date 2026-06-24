@@ -1398,3 +1398,49 @@ body.admin-mode .app-main {
   color: var(--color-oliva);
 }
 .admin-image-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---- Recetas (listado público) ---- */
+.recetas__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  color: var(--color-verde);
+  margin-bottom: var(--sp-3);
+}
+.recetas-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.receta-card {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-2);
+}
+.receta-card__media {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-crema);
+  color: var(--color-oliva);
+}
+.receta-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.receta-card__title { font-weight: var(--fw-semibold); color: var(--color-cacao); }
+.receta-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

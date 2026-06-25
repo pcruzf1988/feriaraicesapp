@@ -1,4 +1,5 @@
 import { h, icon } from "../../core/utils/dom.js";
+import { urlHttpSegura } from "../../core/utils/url.js";
 import { createProductCard } from "../../ui/components/product-card.js";
 import { getProductor, listProductosDeProductor, listSellos } from "./feria-service.js";
 
@@ -99,9 +100,11 @@ function redesBlock(redes) {
 }
 
 function videosBlock(videos) {
+  const safe = videos.map(urlHttpSegura).filter(Boolean);
+  if (!safe.length) return null;
   return h("div", { class: "perfil-videos" }, [
     h("h2", { class: "detalle-subtitle", text: "Videos" }),
-    ...videos.map((url) =>
+    ...safe.map((url) =>
       h("a", { class: "perfil-video", href: url, target: "_blank", rel: "noopener" },
         [icon("brand-youtube"), h("span", { text: "Ver video" })])),
   ]);

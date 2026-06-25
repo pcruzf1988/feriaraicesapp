@@ -1,4 +1,5 @@
 import { h, icon } from "../../core/utils/dom.js";
+import { urlHttpSegura } from "../../core/utils/url.js";
 import { getReceta, getProducto } from "./feria-service.js";
 import { productosCompatiblesVisibles, pasosLimpios } from "./domain/recetas.js";
 
@@ -32,13 +33,14 @@ function backButton(navigate) {
 
 function renderReceta(r, productos, navigate) {
   const pasos = pasosLimpios(r.instrucciones);
+  const video = urlHttpSegura(r.video);
   return h("section", { class: "detalle" }, [
     backButton(navigate),
     r.portadaURL ? h("div", { class: "receta-hero" }, [h("img", { src: r.portadaURL, alt: r.titulo })]) : null,
     h("div", { class: "detalle-head" }, [h("h1", { class: "detalle-title", text: r.titulo })]),
     r.descripcion ? h("p", { class: "detalle-desc", text: r.descripcion }) : null,
-    r.video
-      ? h("a", { class: "perfil-video", href: r.video, target: "_blank", rel: "noopener" },
+    video
+      ? h("a", { class: "perfil-video", href: video, target: "_blank", rel: "noopener" },
           [icon("brand-youtube"), h("span", { text: "Ver video" })])
       : null,
     pasos.length ? pasosBlock(pasos) : null,

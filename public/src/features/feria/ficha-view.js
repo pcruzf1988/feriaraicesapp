@@ -101,7 +101,7 @@ function renderFicha(p, { categorias, recetas, productor, navigate }) {
 
     productor ? productorCard(productor, p, navigate) : null,
 
-    recetas.length ? recetasBlock(recetas) : null,
+    recetas.length ? recetasBlock(recetas, navigate) : null,
 
     addBar(p),
   ]);
@@ -124,11 +124,12 @@ function productorCard(productor, producto, navigate) {
   ]);
 }
 
-function recetasBlock(recetas) {
+function recetasBlock(recetas, navigate) {
   return h("div", { class: "detalle-recetas" }, [
     h("h2", { class: "detalle-subtitle", text: "Se puede usar en estas recetas" }),
     h("div", { class: "chip-row" }, recetas.map((r) =>
-      h("span", { class: "chip" }, [icon("chef-hat", "ti--sm"), r.titulo]))),
+      h("button", { class: "chip", type: "button", onclick: () => navigate(`/receta/${r.id}`) },
+        [icon("chef-hat", "ti--sm"), r.titulo]))),
   ]);
 }
 
